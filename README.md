@@ -1,2 +1,3 @@
-# pds2-maquina-de-busca
-# bolo de chocolate com morango
+### pds2-maquina-de-busca
+
+# Início das atividas por Túlio Dias e Mateus Felipe
