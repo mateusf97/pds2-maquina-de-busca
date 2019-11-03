@@ -6,7 +6,7 @@
 
 int main(int argc, char const *argv[])
 {
-  // g++ -Wall main.cpp leitura.cpp -o output.exe && ./output.exe
+  // g++ -Wall main.cpp leitura.cpp busca.cpp processar.cpp -o output.exe && ./output.exe
   std::cout << "Compilou!!" << std::endl;
 
   Leitura *leitor = new Leitura();
