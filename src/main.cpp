@@ -11,9 +11,9 @@ int main(int argc, char const *argv[])
 
   if (leitor->iniciarLeitura()) {
 
-    // leitor->imprimirArquivos();
-    // int i = leitor->contarArquivos();
-    // std::cout << "O número de arquivos encontrados foi " << i << std::endl;
+    leitor->imprimirArquivos();
+    int i = leitor->contarArquivos();
+    std::cout << "O número de arquivos encontrados foi " << i << std::endl;
 
   } else {
     return -1;

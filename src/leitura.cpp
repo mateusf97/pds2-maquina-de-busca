@@ -19,25 +19,8 @@ bool Leitura::iniciarLeitura() {
   }
 }
 
-struct dirent Leitura::buscarArquivos() {
-  return *this->arquivos;
-}
-
-void Leitura::imprimirArquivos() {
-  this->dir = opendir ("../data/");
-
-  int remover = 0;
-
-  while ((this->arquivos = readdir(this->dir)) != NULL) {
-    if (remover > 1) {
-      // Os dois primeiros items da lista de arquivos são a pasta atual e a pasta anterior
-      std::cout << arquivos->d_name << std::endl;
-    }
-
-    remover++;
-  }
-
-  closedir (this->dir);
+struct dirent *Leitura::buscarArquivos() {
+  return this->arquivos;
 }
 
 int Leitura::contarArquivos() {
@@ -46,10 +29,32 @@ int Leitura::contarArquivos() {
   int i = -2;
   // Os dois primeiros items da lista de arquivos são a pasta atual e a pasta anterior
 
-  while ((this->arquivos = readdir(this->dir)) != NULL) {
+   struct dirent *arquivos_heap = this->buscarArquivos();
+
+
+  while ((arquivos_heap = readdir(this->dir)) != NULL) {
     i++;
   }
 
   closedir (this->dir);
   return i;
+}
+
+void Leitura::imprimirArquivos() {
+  this->dir = opendir ("../data/");
+
+  int remover = 0;
+  struct dirent *arquivos_heap = this->buscarArquivos();
+
+
+  while ((arquivos_heap = readdir(this->dir)) != NULL) {
+    if (remover > 1) {
+      // Os dois primeiros items da lista de arquivos são a pasta atual e a pasta anterior
+      std::cout << arquivos_heap->d_name << std::endl;
+    }
+
+    remover++;
+  }
+
+  closedir (this->dir);
 }

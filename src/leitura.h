@@ -19,8 +19,7 @@ class Leitura {
     bool iniciarLeitura();
 
     // Devolve lista com o nome dos arquivos lidos
-    // Não void
-    struct dirent buscarArquivos();
+    struct dirent *buscarArquivos();
 
     //Imprime o nome dos arquivos lidos
     void imprimirArquivos();
