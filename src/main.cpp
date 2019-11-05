@@ -11,9 +11,7 @@ int main(int argc, char const *argv[])
 
   if (leitor->iniciarLeitura()) {
 
-    int i = leitor->contarArquivos();
-    i++;
-    delete leitor;
+    leitor->buscarArquivos();
 
 
 

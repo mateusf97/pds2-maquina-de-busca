@@ -10,14 +10,8 @@ Leitura::~Leitura() {
 
 bool Leitura::iniciarLeitura() {
 
-  if ((dir = opendir ("../data/")) != NULL) {
-
-    while ((arquivos=readdir(dir)) != NULL) {
-      std::cout << arquivos->d_name << std::endl;
-    }
-
-    closedir (dir);
-
+  if ((this->dir = opendir ("../data/")) != NULL) {
+    closedir (this->dir);
     return true;
   } else {
     perror ("Não foi possível abrir os arquivos");
@@ -27,4 +21,14 @@ bool Leitura::iniciarLeitura() {
 
 int Leitura::contarArquivos() {
   return 0;
+}
+
+void Leitura::buscarArquivos() {
+  this->dir = opendir ("../data/");
+
+  while ((this->arquivos = readdir(this->dir)) != NULL) {
+    std::cout << arquivos->d_name << std::endl;
+  }
+
+  closedir (this->dir);
 }
