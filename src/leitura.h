@@ -2,25 +2,31 @@
 #define LEITURA_H
 
 #include <string>
-using std::string;
+#include <iostream>
+#include <dirent.h>
 
 class Leitura {
- public:
-  // Cria uma Leitura vazia.
-  Leitura();
 
-  // Ler todos os arquivos que está na pasta data
-  void iniciarLeitura();
+  private:
+    DIR *dir;
+    struct dirent *arquivos;
 
-  // Devolve lista com o nome dos arquivos lidos
-  // Não void
-  void buscarArquivos();
+  public:
+    // Cria uma Leitura vazia.
+    Leitura();
 
-  // Devolve quantos arquivos na pasta data
-  int contarArquivos();
+    // Ler todos os arquivos que está na pasta data
+    bool iniciarLeitura();
 
-  // Desaloca a memória alocada para a Leitura.
-  ~Leitura();
+    // Devolve lista com o nome dos arquivos lidos
+    // Não void
+    void buscarArquivos();
+
+    // Devolve quantos arquivos na pasta data
+    int contarArquivos();
+
+    // Desaloca a memória alocada para a Leitura.
+    ~Leitura();
 };
 
 #endif  // LEITURA_H
