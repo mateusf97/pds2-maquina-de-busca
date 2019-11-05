@@ -20,7 +20,10 @@ class Leitura {
 
     // Devolve lista com o nome dos arquivos lidos
     // Não void
-    void buscarArquivos();
+    struct dirent buscarArquivos();
+
+    //Imprime o nome dos arquivos lidos
+    void imprimirArquivos();
 
     // Devolve quantos arquivos na pasta data
     int contarArquivos();
