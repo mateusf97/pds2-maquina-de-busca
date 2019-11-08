@@ -9,24 +9,32 @@ int main(int argc, char const *argv[])
 
   Leitura *leitor = new Leitura();
 
+
   if (leitor->iniciarLeitura()) {
 
-    // leitor->imprimirArquivos();
-    int i = leitor->contarArquivos();
-    std::cout << "O número de arquivos encontrados foi " << i << std::endl;
-    std::list<std::string> a = leitor->listarArquivos();
+    int num_arquivos = leitor->contarArquivos();
 
-    std::cout << "começou" << std::endl;
-    for (auto i = a.begin(); i != a.end(); i++)
-    {
-      std::cout << *i << std::endl;
+    if (num_arquivos > 0) {
+
+      std::list<std::string> lista_de_arquivos = leitor->listarArquivos();
+
+      Processar *processador = new Processar(lista_de_arquivos);
+
+      processador->processarArquivos();
+
+      delete processador;
+    } else {
+      std::cout << "Nenhum arquivos encontrado na pasta '../data'. ";
+      std::cout << "Adicione  Um arquivo '.txt' para poder";
+      std::cout << " executar este programa." << std::endl;
     }
-
-    std::cout << "acabou" << std::endl;
-
   } else {
-    return -1;
+    std::cout << "Não foi possível extrair os arquivos da pasta '../data'\n";
+    std::cout << "Talvez você não tenha permissão de leitura da pasta.\n";
+    std::cout << "Tente executar este programa como administrador." << std::endl;
   }
 
+
+  delete leitor;
   return 0;
 }
