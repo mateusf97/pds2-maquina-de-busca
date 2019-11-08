@@ -4,12 +4,14 @@
 #include <string>
 #include <iostream>
 #include <dirent.h>
+#include <list>
 
 class Leitura {
 
   private:
     DIR *dir;
     struct dirent *arquivos;
+
 
   public:
     // Cria uma Leitura vazia.
@@ -20,6 +22,9 @@ class Leitura {
 
     // Devolve lista com o nome dos arquivos lidos
     struct dirent *buscarArquivos();
+
+    // Devolve uma lista com o endereço dos arquivos
+    std::list<std::string> listarArquivos();
 
     //Imprime o nome dos arquivos lidos
     void imprimirArquivos();
