@@ -53,8 +53,8 @@ std::list<std::string> Leitura::listarArquivos() {
     if (remover > 1) {
       // Os dois primeiros items da lista de arquivos são a pasta atual e a pasta anterior
       // std::cout << arquivos_heap->d_name << std::endl;
-      auto s1 = std::to_string("../data/");
-      auto s2 = std::to_string(arquivos_heap->d_name);
+      auto s1 = std::string("../data/");
+      auto s2 = std::string(arquivos_heap->d_name);
       enderecos.push_back((s1+s2));
 
     }

@@ -16,10 +16,10 @@ int main(int argc, char const *argv[])
     std::cout << "O número de arquivos encontrados foi " << i << std::endl;
     std::list<std::string> a = leitor->listarArquivos();
 
-	std::cout << "começou" << std::endl;
+    std::cout << "começou" << std::endl;
     for (auto i = a.begin(); i != a.end(); i++)
     {
-    	std::cout << *i << std::endl; 
+      std::cout << *i << std::endl;
     }
 
     std::cout << "acabou" << std::endl;
