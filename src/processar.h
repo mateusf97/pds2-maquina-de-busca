@@ -12,9 +12,10 @@ class Processar {
   private:
     std::list<std::string> lista_de_arquivos;
     void mapearPalavras(std::string,std::string);
+    void imprimirRelacoes();
 
   public:
-    std::map<std::string, std::vector<std::pair<std::string, int>>> Indice;
+    std::map<std::string, std::map<std::string, int>> indice;
 
     // Cria uma processador vazio.
     Processar();
