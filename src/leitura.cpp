@@ -9,10 +9,12 @@ Leitura::~Leitura() {
 }
 
 bool Leitura::iniciarLeitura() {
-    this->dir = opendir("../data/");
+  this->dir = opendir("../data/");
+
   if (this->dir != nullptr) {
     closedir (this->dir);
     return true;
+
   } else {
     perror ("Não foi possível abrir os arquivos");
     closedir (this->dir);
@@ -57,8 +59,11 @@ std::list<std::string> Leitura::listarArquivos() {
   closedir (this->dir);
 
   if (remover > 1) {
+    //Caso o número de arquivos seja maior do que 0
     return enderecos;
+
   } else {
+    enderecos.clear ();
     return enderecos;
   }
 }

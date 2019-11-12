@@ -3,7 +3,7 @@
 
 #include <string>
 #include <iostream>
-#include <string>
+#include <fstream>
 #include <vector>
 #include <list>
 #include <map>
@@ -11,9 +11,10 @@
 class Processar {
   private:
     std::list<std::string> lista_de_arquivos;
+    void mapearPalavras(std::string);
 
   public:
-    typedef std::map<std::string, std::vector<std::pair<int, int>>> Indice;
+    std::map<std::string, std::vector<std::pair<std::string, int>>> Indice;
 
     // Cria uma processador vazio.
     Processar();
