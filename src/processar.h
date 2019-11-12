@@ -11,7 +11,7 @@
 class Processar {
   private:
     std::list<std::string> lista_de_arquivos;
-    void mapearPalavras(std::string);
+    void mapearPalavras(std::string,std::string);
 
   public:
     std::map<std::string, std::vector<std::pair<std::string, int>>> Indice;
