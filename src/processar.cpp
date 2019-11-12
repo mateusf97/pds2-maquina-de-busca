@@ -36,12 +36,13 @@ void Processar::processarArquivos() {
 
           if (b == ' ' || b == '\n' || b == '\0'|| b == '\r'|| b == '\t') {
             // std::cout << palavra << std::endl;
-            this->mapearPalavras(palavra, *i);
+            if (palavra != "") {
+              this->mapearPalavras(palavra, *i);
+            }
             palavra.clear();
             //se for um espaço entre letras, separa as palavras
           } else {
             palavra.push_back(b);
-            std::cout << "'" << palavra << "'"<< "'" << b << "'" << std::endl;
           }
         }
       }
@@ -59,6 +60,8 @@ void Processar::processarArquivos() {
   }
 
   std::cout << "acabou de imprimir os arquivos" << std::endl;
+
+  this->imprimirRelacoes();
 }
 
 
@@ -68,7 +71,9 @@ void Processar::mapearPalavras(std::string palavra, std::string endereco) {
   if (this->indice.find(palavra) != this->indice.end()) {
 
     if (this->indice[palavra].find(endereco) != relacao.end()) {
-      relacao[endereco]++;
+      int i = this->indice[palavra][endereco];
+      i++;
+      this->indice[palavra][endereco] = i;
     } else {
       relacao.insert (std::pair< std::string, int>(endereco, 1));
     }
@@ -77,16 +82,24 @@ void Processar::mapearPalavras(std::string palavra, std::string endereco) {
     relacao.insert (std::pair< std::string, int>(endereco, 1));
     this->indice.insert (std::pair< std::string, std::map<std::string, int>>(palavra, relacao));
   }
-
-  this->imprimirRelacoes();
 }
 
 void Processar::imprimirRelacoes() {
 
   std::map<std::string, std::map<std::string, int>>::iterator it_palavras;
   std::map<std::string, int>::iterator it_relacao;
-  std::cout << std::endl << "IMPRESSÃO DOS KEY DO MAP" << std::endl;
-  for (it_palavras = this->indice.begin(); it_palavras != this->indice.end(); it_palavras++){
-     std::cout <<  "'" << it_palavras->first << "'" << std::endl;
+  std::map<std::string, int>::iterator end_relacao;
+  std::cout << std::endl << "Inicio da impressão das relações" << std::endl;
+
+  for (it_palavras = this->indice.begin(); it_palavras != this->indice.end(); it_palavras++) {
+    std::cout <<  "KEY['" << it_palavras->first << "']" << std::endl;
+    it_relacao = this->indice[it_palavras->first].begin();
+    end_relacao = this->indice[it_palavras->first].end();
+
+    for (; it_relacao != end_relacao; it_relacao++) {
+      std::cout <<  "     ('" << it_relacao->first << ", " << it_relacao->second << "')" << std::endl;
+    }
   }
+
+  std::cout << std::endl << "Fim da impressão das relações" << std::endl;
 }
