@@ -22,7 +22,12 @@ int main(int argc, char const *argv[])
 
       processador->processarArquivos();
 
+      Busca *buscador = new Busca(num_arquivos, processador->getIndice(), lista_de_arquivos);
+
+      buscador->realizarBusca("apartamento");
+
       delete processador;
+      delete buscador;
     } else {
       std::cout << "Nenhum arquivos encontrado na pasta '../data'. ";
       std::cout << "Adicione  Um arquivo '.txt' para poder";

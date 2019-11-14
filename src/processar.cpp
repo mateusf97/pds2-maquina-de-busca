@@ -13,11 +13,10 @@ Processar::~Processar() {
 }
 
 void Processar::processarArquivos() {
-  std::cout << "começou de imprimir os arquivos" << std::endl;
+  // começou de imprimir os arquivos
   std::list<std::string> a = this->lista_de_arquivos;
 
   for (auto i = a.begin(); i != a.end(); i++) {
-    std::cout << "lendo "<< *i << std::endl;
 
     std::string palavra;
     std::ifstream texto;
@@ -55,13 +54,7 @@ void Processar::processarArquivos() {
     } else {
       std::cout << "Não foi possível abrir o arquivo" << std::endl;
     }
-
-    std::cout << '\n';
   }
-
-  std::cout << "acabou de imprimir os arquivos" << std::endl;
-
-  this->imprimirRelacoes();
 }
 
 
@@ -102,4 +95,8 @@ void Processar::imprimirRelacoes() {
   }
 
   std::cout << std::endl << "Fim da impressão das relações" << std::endl;
+}
+
+std::map<std::string, std::map<std::string, int>> Processar::getIndice() {
+  return this->indice;
 }

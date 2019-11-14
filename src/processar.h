@@ -4,7 +4,6 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <vector>
 #include <list>
 #include <map>
 
@@ -13,9 +12,10 @@ class Processar {
     std::list<std::string> lista_de_arquivos;
     void mapearPalavras(std::string,std::string);
     void imprimirRelacoes();
+    std::map<std::string, std::map<std::string, int>> indice;
 
   public:
-    std::map<std::string, std::map<std::string, int>> indice;
+    std::map<std::string, std::map<std::string, int>> getIndice();
 
     // Cria uma processador vazio.
     Processar();
