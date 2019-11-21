@@ -22,16 +22,25 @@ void Busca::realizarBusca(std::string palavra) {
 // }
 
 void Busca::calcularRank(std::string palavra) {
-  for (auto j: this->enderecos) {
-    for (auto i: this->indice)  {
-      this->W.clear();
-      this->Tf.clear();
+  for (auto i: this->indice)  {
+	this->W.clear();
+	this->Tf.clear();
 
-      // W = this->calcularCoordenadas(i.first);
-    }
-
-    // this->coordenadas.insert(std::string, std::vector<double> (j, W));
-
+	this->calcularCoordenadas(i.first);
+	int aux = 0;
+	for (auto j: this->enderecos) {
+	  std::vector<double> v;
+	  this->coordenadas.insert(std::pair<std::string, std::vector<double>>(j, v));
+	  this->coordenadas[j].push_back(W[aux]);
+	  aux++;
+	}
+  }
+  std::cout << std::left;
+  for (auto k: this->coordenadas){
+  	for (unsigned int l=0; l < this->indice.size(); l++){
+  	  std::cout <<"|"<< std::setw(9) << k.second[l];
+  	}
+  std::cout << std::endl;
   }
 }
 
@@ -70,9 +79,9 @@ void Busca::calcularW() {
     this->W.push_back(this->Idf * this->Tf[i]);
   }
 
-  for(auto i: this->W) {
-    std::cout << i << std::endl;
-  }
+  // for(auto i: this->W) {
+  //   std::cout << i << std::endl;
+  // }
 }
 
 
