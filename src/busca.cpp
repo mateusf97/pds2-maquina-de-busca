@@ -23,24 +23,30 @@ void Busca::realizarBusca(std::string palavra) {
 
 void Busca::calcularRank(std::string palavra) {
   for (auto i: this->indice)  {
-	this->W.clear();
-	this->Tf.clear();
+  	this->W.clear();
+  	this->Tf.clear();
 
-	this->calcularCoordenadas(i.first);
-	int aux = 0;
-	for (auto j: this->enderecos) {
-	  std::vector<double> v;
-	  this->coordenadas.insert(std::pair<std::string, std::vector<double>>(j, v));
-	  this->coordenadas[j].push_back(W[aux]);
-	  aux++;
-	}
-  }
-  std::cout << std::left;
-  for (auto k: this->coordenadas){
-  	for (unsigned int l=0; l < this->indice.size(); l++){
-  	  std::cout <<"|"<< std::setw(9) << k.second[l];
+  	this->calcularCoordenadas(i.first);
+  	int aux = 0;
+  	for (auto j: this->enderecos) {
+  	  std::vector<double> v;
+  	  this->coordenadas.insert(std::pair<std::string, std::vector<double>>(j, v));
+  	  this->coordenadas[j].push_back(W[aux]);
+  	  aux++;
   	}
-  std::cout << std::endl;
+  }
+}
+
+
+void Busca::imprimirCoordenadas() {
+  std::cout << std::left;
+
+  for (auto k: this->coordenadas) {
+  	for (unsigned int l=0; l < this->indice.size(); l++){
+  	  std::cout << "|" << std::setw(9) << k.second[l];
+  	}
+
+    std::cout << std::endl;
   }
 }
 
