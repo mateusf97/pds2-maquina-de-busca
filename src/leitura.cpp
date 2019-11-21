@@ -37,10 +37,10 @@ int Leitura::contarArquivos() {
   return num_arquivos;
 }
 
-std::list<std::string> Leitura::listarArquivos() {
+std::vector<std::string> Leitura::listarArquivos() {
   this->dir = opendir("../data/");
   int remover = 0;
-  std::list<std::string> enderecos;
+  std::vector<std::string> enderecos;
 
   while ((this->arquivos = readdir(this->dir)) != NULL) {
 

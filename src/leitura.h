@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 #include <dirent.h>
-#include <list>
+#include <vector>
 
 class Leitura {
 
@@ -21,7 +21,7 @@ class Leitura {
     bool iniciarLeitura();
 
     // Devolve uma lista com o endereço dos arquivos
-    std::list<std::string> listarArquivos();
+    std::vector<std::string> listarArquivos();
 
     //Imprime o nome dos arquivos lidos
     void imprimirArquivos();

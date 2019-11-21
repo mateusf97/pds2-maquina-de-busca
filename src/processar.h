@@ -4,12 +4,12 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <list>
+#include <vector>
 #include <map>
 
 class Processar {
   private:
-    std::list<std::string> lista_de_arquivos;
+    std::vector<std::string> lista_de_arquivos;
     void mapearPalavras(std::string,std::string);
     void imprimirRelacoes();
     std::map<std::string, std::map<std::string, int>> indice;
@@ -21,7 +21,7 @@ class Processar {
     Processar();
 
     //Lista com endereço dos arquivos
-    Processar(std::list<std::string> lista_recebida);
+    Processar(std::vector<std::string> lista_recebida);
 
     // Cria índice remissivo com a quantidade de matches de cada palavra em cada arquivo
     void processarArquivos();

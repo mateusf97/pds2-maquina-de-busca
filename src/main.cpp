@@ -16,7 +16,7 @@ int main(int argc, char const *argv[])
 
     if (num_arquivos > 0) {
 
-      std::list<std::string> lista_de_arquivos = leitor->listarArquivos();
+      std::vector<std::string> lista_de_arquivos = leitor->listarArquivos();
 
       Processar *processador = new Processar(lista_de_arquivos);
 
@@ -24,7 +24,7 @@ int main(int argc, char const *argv[])
 
       Busca *buscador = new Busca(num_arquivos, processador->getIndice(), lista_de_arquivos);
 
-      buscador->realizarBusca("apartamento");
+      buscador->realizarBusca("casa");
 
       delete processador;
       delete buscador;

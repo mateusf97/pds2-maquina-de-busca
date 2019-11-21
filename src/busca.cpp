@@ -1,6 +1,6 @@
 #include "busca.h"
 
-Busca::Busca(int N,  std::map<std::string, std::map<std::string, int>> indice, std::list<std::string> enderecos) {
+Busca::Busca(int N,  std::map<std::string, std::map<std::string, int>> indice, std::vector<std::string> enderecos) {
   this->N = N;
   this->indice = indice;
   this->enderecos = enderecos;
@@ -22,31 +22,65 @@ void Busca::realizarBusca(std::string palavra) {
 // }
 
 void Busca::calcularRank(std::string palavra) {
+  for (auto j: this->enderecos) {
+    for (auto i: this->indice)  {
+      this->W.clear();
+      this->Tf.clear();
+
+      // W = this->calcularCoordenadas(i.first);
+    }
+
+    // this->coordenadas.insert(std::string, std::vector<double> (j, W));
+
+  }
+}
+
+void Busca::calcularCoordenadas(std::string palavra) {
   this->calcularNx(palavra);
   this->calcularIdf();
   this->calcularTf(palavra);
-  // this->calcularNx(palavra);
+  this->calcularW();
 }
 
 void Busca::calcularNx(std::string palavra){
   this->Nx = this->indice[palavra].size();
 }
 
-void Busca::calcularTf(std::string palavra) {
-  // this->Tf = this->indice[palavra][this->enderecos].second;
-}
-
 void Busca::calcularIdf(){
   int N = this->N;
   int Nx = this->Nx;
 
-  this->Idf = log((float) N / Nx);
-
-  std::cout << N << std::endl;
-  std::cout << Nx << std::endl;
-  std::cout << this->Idf << std::endl;
+  this->Idf = log2( (float) N / Nx);
 }
 
+void Busca::calcularTf(std::string palavra) {
+  for (int i = 0; i < this->N; ++i)
+  {
+    if(this->indice[palavra].find(this->enderecos[i]) != this->indice[palavra].end()) {
+      this->Tf.push_back(this->indice[palavra][this->enderecos[i]]);
+    } else {
+      this->Tf.push_back(0);
+    }
+  }
+}
+
+void Busca::calcularW() {
+  for (int i = 0; i < this->N; ++i)
+  {
+    this->W.push_back(this->Idf * this->Tf[i]);
+  }
+
+  for(auto i: this->W) {
+    std::cout << i << std::endl;
+  }
+}
+
+
+void Busca::imprimirTfs() {
+  for(auto i: this->Tf) {
+    std::cout << i << std::endl;
+  }
+}
 
 void Busca::imprimirRelacoes() {
 
