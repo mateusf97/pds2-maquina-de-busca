@@ -36,38 +36,14 @@ void Busca::calcularRank(std::string palavra) {
   this->cosineRank(palavra);
 }
 
-void Busca::cosineRank(std::string palavra) {
+double Busca::cosineRank(std::string palavra) {
 
-  double acumulado = 0;
-  double consulta = 0;
-  double consulta_ao_quadrado = 0;
-  double acumulado_ao_quadrado = 0;
-  double troca = 0;
+  std::map<std::string, std::map<std::string, int>>::iterator it;
+  unsigned int cnt = 0;
 
-  for (auto i: this->coordenadas) {
-
-    acumulado = 0;
-    consulta = 0;
-    consulta_ao_quadrado = 0;
-    acumulado_ao_quadrado = 0;
-    troca = 0;
-
-    for (unsigned int j = 0; j < this->indice.size(); j++){
-      acumulado += i.second[j];
-
-      this->calcularCoordenadas(palavra);
-      consulta += this->W[j];
-      consulta_ao_quadrado += pow(this->W[j], 2);
-      acumulado_ao_quadrado += pow(i.second[j], 2);
-    }
-
-    std::map<std::string, std::map<std::string, int>>::iterator it;
-
-    int cnt = 0;
-
-    for (it = this->indice.begin(); it != this->indice.end(); ++it)
+  for (it = this->indice.begin(); it != this->indice.end(); ++it)
     {
-      std::cout << it->first << std::endl;
+      //std::cout << it->first << std::endl;
       if (it->first == palavra) {
         break;
       }
@@ -75,15 +51,42 @@ void Busca::cosineRank(std::string palavra) {
       cnt++;
     }
 
+    // double consulta = 0;
+    double acumulado_ao_quadrado = 0.0;
+    double resultado = 0.0;
+    this->Tf.clear();
+  for (auto i: this->coordenadas) {
+    double acumulado = 0.0;
+    double consulta_ao_quadrado = 0.0;
+
+  	for (unsigned int l=0; l < this->indice.size(); l++) {
+        this->calcularCoordenadas(palavra);
+        if(l==cnt){
+          double ao_quadrado = pow(i.second[l], 2);
+          acumulado_ao_quadrado = acumulado_ao_quadrado + ao_quadrado;
+          acumulado += i.second[l] * this->Idf;
+        }
+        consulta_ao_quadrado = pow(this->Idf, 2);
+        this->Tf.clear();
+  	  }
+  	  std::cout << acumulado_ao_quadrado << " acumulado ao quadrado" << std::endl;
+  	  double denominador = (sqrt(acumulado_ao_quadrado)*sqrt(consulta_ao_quadrado));
+  	  if (denominador == 0){
+  	  	denominador = 1;
+  	  }
+	  	std::cout << acumulado << " acumulado" << std::endl << denominador << " denominador" << std::endl;
+	  	resultado = (double) ( (double) acumulado/ (double) denominador);
+	    std::cout << resultado << std::endl;
+        std::cout << std::endl;
+    }
+
+
     // std::cout << i.first << " " << cnt << std::endl;
-    troca = (acumulado*consulta) / (acumulado_ao_quadrado*consulta_ao_quadrado);
-
-    this->coordenadas[i.first][cnt] = troca;
-
-  }
 
   std::cout << std::endl;
+
   imprimirCoordenadas();
+  return 1;
 }
 
 void Busca::imprimirCoordenadas() {
@@ -118,7 +121,7 @@ void Busca::calcularIdf(){
   int N = this->N;
   int Nx = this->Nx;
 
-  this->Idf = log2( (float) N / Nx);
+  this->Idf = log2( (double) N / Nx);
 }
 
 void Busca::calcularTf(std::string palavra) {

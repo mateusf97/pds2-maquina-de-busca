@@ -26,7 +26,7 @@ class Busca {
     int Nx = 0;
     // Número de arquivos com a palavra X
 
-    float Idf = 0.0;
+    double Idf = 0.0;
     // Relação Log na base 2 de N por Nx
 
     std::vector<int> Tf;
@@ -49,7 +49,7 @@ class Busca {
     void imprimirCoordenadas();
     // Imprimir o Map de coordernadas
 
-    void cosineRank(std::string);
+    double cosineRank(std::string);
     // Calcula o cosine Rank após o processamento
 
     void calcularNx(std::string);
