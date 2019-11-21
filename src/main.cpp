@@ -23,8 +23,7 @@ int main(int argc, char const *argv[])
       processador->processarArquivos();
 
       Busca *buscador = new Busca(num_arquivos, processador->getIndice(), lista_de_arquivos);
-
-      buscador->realizarBusca("casa");
+      buscador->realizarBusca("a");
 
       delete processador;
       delete buscador;

@@ -49,6 +49,9 @@ class Busca {
     void imprimirCoordenadas();
     // Imprimir o Map de coordernadas
 
+    void cosineRank(std::string);
+    // Calcula o cosine Rank após o processamento
+
     void calcularNx(std::string);
     void calcularW();
     void calcularTf(std::string);
