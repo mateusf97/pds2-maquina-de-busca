@@ -51,36 +51,32 @@ double Busca::cosineRank(std::string palavra) {
       cnt++;
     }
 
-    // double consulta = 0;
-    double acumulado_ao_quadrado = 0.0;
-    double resultado = 0.0;
     this->Tf.clear();
   for (auto i: this->coordenadas) {
     double acumulado = 0.0;
-    double consulta_ao_quadrado = 0.0;
+    double acumulado_ao_quadrado = 0.0;
+    double resultado = 0.0;
 
   	for (unsigned int l=0; l < this->indice.size(); l++) {
         this->calcularCoordenadas(palavra);
         if(l==cnt){
-          double ao_quadrado = pow(i.second[l], 2);
-          acumulado_ao_quadrado = acumulado_ao_quadrado + ao_quadrado;
-          acumulado += i.second[l] * this->Idf;
+          acumulado = i.second[l] * this->Idf;
         }
-        consulta_ao_quadrado = pow(this->Idf, 2);
+        double ao_quadrado = pow(i.second[l], 2);
+        acumulado_ao_quadrado += ao_quadrado;
         this->Tf.clear();
   	  }
-  	  std::cout << acumulado_ao_quadrado << " acumulado ao quadrado" << std::endl;
-  	  double denominador = (sqrt(acumulado_ao_quadrado)*sqrt(consulta_ao_quadrado));
-  	  if (denominador == 0){
-  	  	denominador = 1;
-  	  }
-	  	std::cout << acumulado << " acumulado" << std::endl << denominador << " denominador" << std::endl;
-	  	resultado = (double) ( (double) acumulado/ (double) denominador);
+  	  double denominador = (sqrt(acumulado_ao_quadrado)*this->Idf);
+	  	resultado = (acumulado/denominador);
 	    std::cout << resultado << std::endl;
-        std::cout << std::endl;
     }
 
-
+  	  // std::cout << acumulado_ao_quadrado << " acumulado ao quadrado" << std::endl;
+  	  // if (denominador == 0){
+  	  // 	denominador = 1;
+  	  // }
+	  	// std::cout << acumulado << " acumulado" << std::endl << denominador << " denominador" << std::endl;
+    //     std::cout << std::endl;
     // std::cout << i.first << " " << cnt << std::endl;
 
   std::cout << std::endl;
@@ -142,9 +138,6 @@ void Busca::calcularW() {
     this->W.push_back(this->Idf * this->Tf[i]);
   }
 
-  // for(auto i: this->W) {
-  //   std::cout << i << std::endl;
-  // }
 }
 
 
