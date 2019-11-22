@@ -24,7 +24,7 @@ class Processar {
     Processar(std::vector<std::string> lista_recebida);
 
     // Cria índice remissivo com a quantidade de matches de cada palavra em cada arquivo
-    void processarArquivos();
+    bool processarArquivos();
 
     // Desaloca a memória alocada para a Processar.
     ~Processar();

@@ -20,13 +20,19 @@ int main(int argc, char const *argv[])
 
       Processar *processador = new Processar(lista_de_arquivos);
 
-      processador->processarArquivos();
+      if (processador->processarArquivos()) {
+        Busca *buscador = new Busca(num_arquivos, processador->getIndice(), lista_de_arquivos);
+        buscador->realizarBusca("a");
 
-      Busca *buscador = new Busca(num_arquivos, processador->getIndice(), lista_de_arquivos);
-      buscador->realizarBusca("a");
+        delete processador;
+        delete buscador;
+      } else {
+        std::cout << "Não foi possível extrair os arquivos da pasta '../data'\n";
+        std::cout << "Talvez você não tenha permissão de leitura da pasta.\n";
+        std::cout << "Tente executar este programa como administrador." << std::endl;
+        delete processador;
+      }
 
-      delete processador;
-      delete buscador;
     } else {
       std::cout << "Nenhum arquivos encontrado na pasta '../data'. ";
       std::cout << "Adicione  Um arquivo '.txt' para poder";

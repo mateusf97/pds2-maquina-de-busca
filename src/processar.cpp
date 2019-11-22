@@ -12,7 +12,7 @@ Processar::~Processar() {
   // Destrutor
 }
 
-void Processar::processarArquivos() {
+bool Processar::processarArquivos() {
   // começou de imprimir os arquivos
   std::vector<std::string> a = this->lista_de_arquivos;
 
@@ -53,8 +53,11 @@ void Processar::processarArquivos() {
       texto.close();
     } else {
       std::cout << "Não foi possível abrir o arquivo" << std::endl;
+      return false;
     }
   }
+
+  return true;
 }
 
 
