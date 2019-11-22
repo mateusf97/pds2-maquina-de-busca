@@ -82,7 +82,7 @@ void Processar::imprimirRelacoes() {
   std::map<std::string, std::map<std::string, int>>::iterator it_palavras;
   std::map<std::string, int>::iterator it_relacao;
   std::map<std::string, int>::iterator end_relacao;
-  std::cout << std::endl << "Inicio da impressão das relações" << std::endl;
+  std::cout << std::endl << "Inicio da impressão das relações" << std::endl << std::endl;
 
   for (it_palavras = this->indice.begin(); it_palavras != this->indice.end(); it_palavras++) {
     std::cout <<  "KEY['" << it_palavras->first << "']" << std::endl;

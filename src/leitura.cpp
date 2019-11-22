@@ -1,7 +1,7 @@
 #include "leitura.h"
 
 Leitura::Leitura() {
-  std::cout << "Inicializando leitura dos arquivos da pasta './data/'" << std::endl << std::endl;
+  std::cout << std::endl << "Inicializando leitura dos arquivos da pasta './data/'" << std::endl;
 }
 
 Leitura::~Leitura() {
@@ -73,6 +73,7 @@ void Leitura::imprimirArquivos() {
   this->dir = opendir("../data/");
 
   int remover = 0;
+  std::cout << std::endl;
 
   while ((this->arquivos = readdir(this->dir)) != NULL) {
     if (remover > 1) {
@@ -83,5 +84,6 @@ void Leitura::imprimirArquivos() {
     remover++;
   }
 
+  std::cout << std::endl;
   closedir (this->dir);
 }

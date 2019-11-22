@@ -32,7 +32,6 @@ void Busca::calcularRank(std::string palavra) {
   	  aux++;
   	}
   }
-
   this->imprimirCoordenadas();
   this->cosineRank(palavra);
 }
@@ -84,20 +83,24 @@ void Busca::cosineRank(std::string palavra) {
   }
 
   std::cout << std::endl;
-
   imprimirCoordenadas();
 }
 
 void Busca::imprimirCoordenadas() {
+  std::cout << "começou impressão das coordenadas" << std::endl;
   std::cout << std::left;
 
   for (auto k: this->coordenadas) {
+    std::cout << k.first << std::endl;
+
   	for (unsigned int l=0; l < this->indice.size(); l++){
   	  std::cout << "|" << std::setw(9) << k.second[l];
   	}
 
-    std::cout << std::endl;
+    std::cout << std::endl << std::endl;
   }
+
+  std::cout << "terminou impressão das coordenadas" << std::endl;
 }
 
 void Busca::calcularCoordenadas(std::string palavra) {
@@ -127,6 +130,7 @@ void Busca::calcularTf(std::string palavra) {
       this->Tf.push_back(0);
     }
   }
+
 }
 
 void Busca::calcularW() {
@@ -143,8 +147,10 @@ void Busca::calcularW() {
 
 void Busca::imprimirTfs() {
   for(auto i: this->Tf) {
-    std::cout << i << std::endl;
+    std::cout << i << " | ";
   }
+
+  std::cout << std::endl;
 }
 
 void Busca::imprimirRelacoes() {
