@@ -43,41 +43,38 @@ double Busca::cosineRank(std::string palavra) {
 
   for (it = this->indice.begin(); it != this->indice.end(); ++it)
     {
-      //std::cout << it->first << std::endl;
       if (it->first == palavra) {
+        // Caso encontre a palavra, cancela a execução do laço e retorno a coluna dele no cnt.
         break;
       }
 
       cnt++;
     }
 
-    this->Tf.clear();
+  this->Tf.clear();
+
   for (auto i: this->coordenadas) {
     double acumulado = 0.0;
     double acumulado_ao_quadrado = 0.0;
     double resultado = 0.0;
 
-  	for (unsigned int l=0; l < this->indice.size(); l++) {
-        this->calcularCoordenadas(palavra);
-        if(l==cnt){
-          acumulado = i.second[l] * this->Idf;
-        }
-        double ao_quadrado = pow(i.second[l], 2);
-        acumulado_ao_quadrado += ao_quadrado;
-        this->Tf.clear();
-  	  }
-  	  double denominador = (sqrt(acumulado_ao_quadrado)*this->Idf);
-	  	resultado = (acumulado/denominador);
-	    std::cout << resultado << std::endl;
+    for (unsigned int l=0; l < this->indice.size(); l++) {
+      this->calcularCoordenadas(palavra);
+
+      if(l==cnt){
+        acumulado = i.second[l] * this->Idf;
+      }
+
+      double ao_quadrado = pow(i.second[l], 2);
+      acumulado_ao_quadrado += ao_quadrado;
+      this->Tf.clear();
+
     }
 
-  	  // std::cout << acumulado_ao_quadrado << " acumulado ao quadrado" << std::endl;
-  	  // if (denominador == 0){
-  	  // 	denominador = 1;
-  	  // }
-	  	// std::cout << acumulado << " acumulado" << std::endl << denominador << " denominador" << std::endl;
-    //     std::cout << std::endl;
-    // std::cout << i.first << " " << cnt << std::endl;
+    double denominador = (sqrt(acumulado_ao_quadrado)*this->Idf);
+    resultado = (acumulado/denominador);
+    std::cout << resultado << std::endl;
+  }
 
   std::cout << std::endl;
 
