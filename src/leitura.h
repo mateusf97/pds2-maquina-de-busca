@@ -11,6 +11,7 @@ class Leitura {
   private:
     DIR *dir;
     struct dirent *arquivos;
+    void imprimirArquivos();
 
 
   public:
@@ -24,7 +25,6 @@ class Leitura {
     std::vector<std::string> listarArquivos();
 
     //Imprime o nome dos arquivos lidos
-    void imprimirArquivos();
 
     // Devolve quantos arquivos na pasta data
     int contarArquivos();

@@ -1,11 +1,10 @@
 #include "leitura.h"
 
 Leitura::Leitura() {
-  std::cout << "Inicializando leitura dos arquivos da pasta '../data/'" << std::endl;
+  std::cout << "Inicializando leitura dos arquivos da pasta './data/'" << std::endl << std::endl;
 }
 
 Leitura::~Leitura() {
-  std::cout << "Termino do processamento de leitura." << std::endl;
 }
 
 bool Leitura::iniciarLeitura() {
@@ -50,13 +49,15 @@ std::vector<std::string> Leitura::listarArquivos() {
       auto s1 = std::string("../data/");
       auto s2 = std::string(this->arquivos->d_name);
       enderecos.push_back((s1+s2));
-      std::cout <<  (this->arquivos)->d_name << std::endl;
     }
 
     remover++;
   }
 
   closedir (this->dir);
+  std::cout << "Foram encontrados " << this->contarArquivos() << " arquivos na pasta './data/'." << std::endl;
+  this->imprimirArquivos();
+  std::cout << "Término do processamento de leitura." << std::endl << std::endl;
 
   if (remover > 1) {
     //Caso o número de arquivos seja maior do que 0
