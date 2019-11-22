@@ -19,6 +19,9 @@ class Busca {
     std::vector<std::string> enderecos;
     // Endereço dos arquivos lidos
 
+    std::vector<double> rank;
+    // Vetor com os resultados da similiradida entre input e o arquivos do dataset
+
 
     int N = 0;
     // Número de arquivos

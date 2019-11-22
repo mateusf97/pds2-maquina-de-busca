@@ -32,7 +32,7 @@ void Busca::calcularRank(std::string palavra) {
   	  aux++;
   	}
   }
-  this->imprimirCoordenadas();
+  //this->imprimirCoordenadas();
   this->cosineRank(palavra);
 }
 
@@ -56,7 +56,6 @@ double Busca::cosineRank(std::string palavra) {
   for (auto i: this->coordenadas) {
     double acumulado = 0.0;
     double acumulado_ao_quadrado = 0.0;
-    double resultado = 0.0;
 
     for (unsigned int l=0; l < this->indice.size(); l++) {
       this->calcularCoordenadas(palavra);
@@ -72,13 +71,11 @@ double Busca::cosineRank(std::string palavra) {
     }
 
     double denominador = (sqrt(acumulado_ao_quadrado)*this->Idf);
-    resultado = (acumulado/denominador);
-    std::cout << resultado << std::endl;
+    rank.push_back(acumulado/denominador);
   }
 
   std::cout << std::endl;
 
-  imprimirCoordenadas();
   return 1;
 }
 
@@ -164,4 +161,31 @@ void Busca::imprimirRelacoes() {
   }
 
   std::cout << std::endl << "Fim da impressão das relações" << std::endl;
+}
+
+void Busca::imprimirRank() {
+	double maior = 0;
+	int index = 0;
+	for(unsigned int j = 0; j < this->enderecos.size(); j++){
+		maior = 0;
+		for(unsigned int k = j; k < this->enderecos.size(); k++){
+			double menor = this->rank[k];
+			if(menor>=maior){
+				maior = menor;
+				index = k;
+			}
+		}
+		std::string troca = this->enderecos[j];
+		this->enderecos[j] = this->enderecos[index];
+		this->enderecos[index] = troca;
+
+		double ordena = this->rank[j];
+		this->rank[j] = this->rank[index];
+		this->rank[index] = ordena;
+	}
+	std::cout << "Ranking:" << std::endl;
+	for(unsigned int i = 0; i < this->enderecos.size(); i++ ){
+		std::cout << i+1 << "º Arquivo " << this->enderecos[i].substr(8) << " -> Nível de similaridade: ";
+		std::cout << rank[i] << std::endl;
+	}
 }

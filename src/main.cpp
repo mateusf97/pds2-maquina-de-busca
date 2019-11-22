@@ -33,6 +33,14 @@ int main(int argc, char const *argv[])
         delete processador;
       }
 
+
+      Busca *buscador = new Busca(num_arquivos, processador->getIndice(), lista_de_arquivos);
+      buscador->realizarBusca("a");
+      buscador->imprimirRank();
+
+      delete processador;
+      delete buscador;
+
     } else {
       std::cout << "Nenhum arquivos encontrado na pasta '../data'. ";
       std::cout << "Adicione  Um arquivo '.txt' para poder";
