@@ -92,19 +92,23 @@ TEST_CASE("Teste 4 – Leitura de arquivos") {
 
 
 
+TEST_CASE("Teste 1 – Busca nos arquivos") {
+  Leitura *leitor = new Leitura();
+  REQUIRE(leitor->iniciarLeitura() == true);
 
+  std::vector<std::string> lista_de_arquivos = leitor->listarArquivos();
+  Processar *processador = new Processar(lista_de_arquivos);
+  REQUIRE(leitor->contarArquivos() == 4);
+  Busca *buscador = new Busca(leitor->contarArquivos(), processador->getIndice(), lista_de_arquivos);
 
-// TEST_CASE("Teste Game - Caso Também Muito Mais Complicado") {
-// 	Game *jogo = new Game();
-// 	jogo->start(3);
-// 	jogo->generate_hand();
-// 	std::shared_ptr<Card> carta(new Card("NB9"));
+  buscador->realizarBusca("a");
 
-// 	CHECK_THROWS_AS(jogo->check_move(carta, "NR0", 2), Invalid_Card);
-
-// 	delete jogo;
-// }
-
+  REQUIRE(processador->processarArquivos() == true);
+  REQUIRE(processador->getIndice()["c"]["../data/doc1.txt"] == 0);
+  REQUIRE(processador->getIndice()["c"]["../data/doc2.txt"] == 1);
+  REQUIRE(processador->getIndice()["c"]["../data/doc3.txt"] == 0);
+  REQUIRE(processador->getIndice()["c"]["../data/doc3.txt"] == 0);
+}
 
 
 
