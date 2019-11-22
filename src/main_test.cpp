@@ -60,10 +60,19 @@ TEST_CASE("Teste 2 – Leitura de arquivos") {
   Processar *processador = new Processar(lista_de_arquivos);
 
   REQUIRE(processador->processarArquivos() == true);
-  CHECK(processador->getIndice()["A"]["../doc1.txt"] == 3);
-
+  CHECK(processador->getIndice()["a"]["../data/doc1.txt"] == 3);
 }
 
+TEST_CASE("Teste 3 – Leitura de arquivos") {
+  Leitura *leitor = new Leitura();
+  REQUIRE(leitor->iniciarLeitura() == true);
+
+ 	std::vector<std::string> lista_de_arquivos = leitor->listarArquivos();
+  Processar *processador = new Processar(lista_de_arquivos);
+
+  REQUIRE(processador->processarArquivos() == true);
+  CHECK(processador->getIndice()["b"]["../data/doc1.txt"] == 1);
+}
 
 
 TEST_CASE("Teste 4 – Leitura de arquivos") {
@@ -74,7 +83,10 @@ TEST_CASE("Teste 4 – Leitura de arquivos") {
   Processar *processador = new Processar(lista_de_arquivos);
 
   REQUIRE(processador->processarArquivos() == true);
-
+  CHECK(processador->getIndice()["c"]["../data/doc1.txt"] == 0);
+  CHECK(processador->getIndice()["c"]["../data/doc2.txt"] == 1);
+  CHECK(processador->getIndice()["c"]["../data/doc3.txt"] == 0);
+  CHECK(processador->getIndice()["c"]["../data/doc3.txt"] == 0);
 }
 
 
