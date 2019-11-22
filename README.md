@@ -14,4 +14,4 @@ Você poderá usar o MakeFile para executar seu programa
 
 - Caso queira executar os testes, você pode digitar ```make teste```
 
-- A documentação está no arquivos chamado "Documentação".
+- A documentação está no arquivos chamado "Documentação", pode ser baixada clicando <a href="https://github.com/mateusf97/pds2-maquina-de-busca/blob/master/Documenta%C3%A7%C3%A3o.docx?raw=true" target="_blank"> aqui</a>.
