@@ -6,9 +6,9 @@ Mateus Felipe e Túlio Dias
 ##MAQUINA DE BUSCA
 
 Você poderá usar o MakeFile para executar seu programa
-(caso não tenha baixe-o <a href="https://wiki.ubuntu.com/SoftwareCenter" target="_blank">aqui</a>)
+(caso não tenha baixe-o <a href="https://askubuntu.com/questions/161104/how-do-i-install-make" target="_blank">aqui</a>)
 
-- Para executar este programa basta executar o comando ```make``` no seu terminal para executálo
+- Para executar este programa basta executar o comando ```make``` no seu terminal para executá-lo
 
 - Caso queira limpar os arquivos, você pode digitar ```make clean```
 
