@@ -36,7 +36,7 @@ void Busca::calcularRank(std::string palavra) {
   this->cosineRank(palavra);
 }
 
-double Busca::cosineRank(std::string palavra) {
+bool Busca::cosineRank(std::string palavra) {
 
   std::map<std::string, std::map<std::string, int>>::iterator it;
   unsigned int cnt = 0;
@@ -76,7 +76,7 @@ double Busca::cosineRank(std::string palavra) {
 
   std::cout << std::endl;
 
-  return 1;
+  return true;
 }
 
 void Busca::imprimirCoordenadas() {

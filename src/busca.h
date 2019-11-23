@@ -52,7 +52,7 @@ class Busca {
     void imprimirCoordenadas();
     // Imprimir o Map de coordernadas
 
-    double cosineRank(std::string);
+    bool cosineRank(std::string);
     // Calcula o cosine Rank após o processamento
 
     void calcularNx(std::string);
@@ -71,6 +71,8 @@ class Busca {
 
     // Desaloca a memória alocada para a Busca.
     ~Busca();
+
+    friend class Teste;
 };
 
 #endif  // BUSCA_H
