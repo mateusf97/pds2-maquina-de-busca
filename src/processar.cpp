@@ -78,7 +78,7 @@ std::vector<std::string> Processar::processarInput(std::string input){
           //se for uma letra maíscula, tranforma em minúscula
       }
 
-      if (b == ' ' || b == '\n' || b == '\0'|| b == '\r'|| b == '\t' || b == std::cin.eof() || b == palavra.eof()) {
+      if (b == ' ' || b == '\n' || b == '\0'|| b == '\r'|| b == '\t' || b == std::cin.eof()) {
         if (palavra != "" || palavra != " " || palavra != "\n" || palavra != "\0" || palavra != "\r" || palavra != "\t") {
           // std::cout << palavra << std::endl;
           input_processado.push_back(palavra);
