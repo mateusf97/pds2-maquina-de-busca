@@ -60,6 +60,45 @@ bool Processar::processarArquivos() {
   return true;
 }
 
+std::vector<std::string> Processar::processarInput(std::string input){
+
+  std::string palavra;
+  std::vector<std::string> input_processado;
+  int index = 0;
+
+  while (input[index] != '\n') {
+    char b;
+    b = input[index];
+      //Analísa caracter por caracter do input
+
+    if (!ispunct(b)) {
+        //Se o caracter lido não for pontuação, continua o código
+      if (isupper(b)) {
+        b += 32;
+          //se for uma letra maíscula, tranforma em minúscula
+      }
+
+      if (b == ' ' || b == '\n' || b == '\0'|| b == '\r'|| b == '\t') {
+        if (palavra != "" || palavra != " ") {
+          std::cout << palavra << std::endl;
+          input_processado.push_back(palavra);
+        }
+        palavra.clear();
+          //se for um espaço entre letras, separa as palavras
+      } else {
+        palavra.push_back(b);
+      }
+    }
+    index++;
+  }
+  if (palavra != "" || palavra != " "){
+   //pega a ultima palavra depois do fim
+    input_processado.push_back(palavra);
+    palavra.clear();
+  }
+  return input_processado;
+}
+
 
 void Processar::mapearPalavras(std::string palavra, std::string endereco) {
   std::map<std::string, int> relacao;

@@ -7,6 +7,7 @@
 int main(int argc, char const *argv[])
 {
 
+  std::string input;
   Leitura *leitor = new Leitura();
 
 
@@ -22,6 +23,11 @@ int main(int argc, char const *argv[])
 
       if (processador->processarArquivos()) {
         Busca *buscador = new Busca(num_arquivos, processador->getIndice(), lista_de_arquivos);
+
+        std::cout << "Entre com as palavras a serem pesquisadas, separadas por 'espaço':" << std::endl;
+        std::getline(std::cin, input);
+        std::cout << "Terminou de ler!" << std::endl;
+        processador->processarInput(input);
         buscador->realizarBusca("a");
 
         delete processador;
@@ -32,14 +38,6 @@ int main(int argc, char const *argv[])
         std::cout << "Tente executar este programa como administrador." << std::endl;
         delete processador;
       }
-
-
-      Busca *buscador = new Busca(num_arquivos, processador->getIndice(), lista_de_arquivos);
-      buscador->realizarBusca("a");
-      buscador->imprimirRank();
-
-      delete processador;
-      delete buscador;
 
     } else {
       std::cout << "Nenhum arquivos encontrado na pasta '../data'. ";
