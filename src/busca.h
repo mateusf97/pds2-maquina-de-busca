@@ -67,7 +67,7 @@ class Busca {
     Busca();
 
     void realizarBusca(std::string);
-    void imprimirRank();
+    void imprimirRank(std::string);
 
     // Desaloca a memória alocada para a Busca.
     ~Busca();

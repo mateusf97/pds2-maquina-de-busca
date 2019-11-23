@@ -66,7 +66,7 @@ std::vector<std::string> Processar::processarInput(std::string input){
   std::vector<std::string> input_processado;
   int index = 0;
 
-  while (input[index] != '\n') {
+  while (input[index] != std::cin.eof()) {
     char b;
     b = input[index];
       //Analísa caracter por caracter do input
@@ -78,9 +78,8 @@ std::vector<std::string> Processar::processarInput(std::string input){
           //se for uma letra maíscula, tranforma em minúscula
       }
 
-      if (b == ' ' || b == '\n' || b == '\0'|| b == '\r'|| b == '\t' || b == std::cin.eof()) {
-        if (palavra != "" || palavra != " " || palavra != "\n" || palavra != "\0" || palavra != "\r" || palavra != "\t") {
-          // std::cout << palavra << std::endl;
+      if (b == ' ' || b == '\n' || b == '\0'|| b == '\r'|| b == '\t') {
+        if (palavra != "" || palavra != " ") {
           input_processado.push_back(palavra);
         }
         palavra.clear();
