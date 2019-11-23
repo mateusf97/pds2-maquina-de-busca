@@ -27,7 +27,10 @@ int main(int argc, char const *argv[])
         std::cout << "Entre com as palavras a serem pesquisadas, separadas por 'espaço':" << std::endl;
         std::getline(std::cin, input);
         std::cout << "Terminou de ler!" << std::endl;
-        processador->processarInput(input);
+        std::vector<std::string> lista_de_inputs = processador->processarInput(input);
+        for (auto i: lista_de_inputs){
+          std::cout << i << std::endl;
+        }
         buscador->realizarBusca("a");
 
         delete processador;
